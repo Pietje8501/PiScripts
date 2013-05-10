@@ -1,0 +1,19 @@
+div {
+ margin:auto;
+}
+body {
+ background-color:#2F4F4F;
+ font-size:24px;
+ font-weight:bold;
+ font-family:Calibri,Arial,sans-serif;
+ color:white;
+}
+#logo {
+ background-image: url(logo.png);
+ height:267px;
+ width:300px;
+}
+#main {
+ border:1px solid darkgray;
+ width:50%;
+}
