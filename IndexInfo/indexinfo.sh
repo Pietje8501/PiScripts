@@ -25,7 +25,7 @@ echo "De huidige temperatuur bedraagt: "$temp >> $indexfile
 echo "</div>" >> $indexfile
 
 echo '<div id="load">' >> $indexfile
-cpuload=$(cat /proc/loadavg | awk '{ print $3*100"&#37;" }')
+cpuload=$(cat /proc/loadavg | awk '{ print $3"&#37;" }')
 echo "De gemiddelde CPU-load in de vorige 15min bedroeg: "$cpuload"<br>" >> $indexfile
 ramtotal=$(cat /proc/meminfo | awk 'NR==1 { print int($(NF-1)/1024)"MB" }')
 ramfree=$(cat /proc/meminfo | awk 'NR==2 { print int($(NF-1)/1024)"MB" }')
