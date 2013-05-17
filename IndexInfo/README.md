@@ -1,5 +1,5 @@
-Gebruik
+Usage
 -------
-* Stel de locatie in van het indexbestand
-* Voeg het shellbestand toe aan de crontab
-* De index.html is een voorbeeld van gegenereerde output
+* Set the location of the statistics file in indexinfo.sh and make sure it's writable
+* In img.php set the location of the statistics file
+* Add the shell file to the crontab (using 'sudo crontab -e')
