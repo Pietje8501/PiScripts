@@ -7,6 +7,10 @@
 ###################################
 #!/bin/bash
 # Check the arguments
+
+# Maximum number of entries in the JSON file
+maximum=100
+
 if [ "$#" -lt 2 ]
 then
 	echo "Usage: $(basename $0) file line1 line2"
@@ -35,6 +39,33 @@ else
 		echo "Last line doesn't end in ']'; $(tail -1 $1)"
 		exit 0
 	fi
+fi
+
+# Count the number of occurences
+entra=$(fgrep -o "{" $1 | wc -l)
+entrb=$(fgrep -o "}" $1 | wc -l)
+todelete=$(($entra - $maximum))
+
+if [ ! "$entra" -eq "$entrb" ]
+then
+	echo "Number of start tags is not the same as number"
+	echo "of end tags. Start: '$entra', end: '$entrb'" 
+	exit 0
+fi
+
+# Remove older entries if number of entries exceeds minimum
+if [ "$todelete" -gt "0" ]
+then
+	awk -v del=$todelete '
+	BEGIN{start=0; end=0; print "["}
+	{
+	if( match($0, "{") > 0)start++
+	if( match($0, "},") > 0)end++
+	if( (start > del+1) && (end > del)){
+		print $0
+	 }
+	}' $1 > tmpchartdata
+	mv tmpchartdata $1
 fi
 
 # Insert all the data into the JSON file
