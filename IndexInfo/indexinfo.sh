@@ -40,5 +40,5 @@ sh /home/pi/scripts/jsonlog.sh $chartfile "$jtemp" "$jcpu" "$jdate"
 # Update cam picture
 sh /home/pi/scripts/makepicture.sh
 
-# Update the history graphs
-python /home/pi/scripts/stats.py
+# Update the history graphs if not using d3
+# python /home/pi/scripts/stats.py
